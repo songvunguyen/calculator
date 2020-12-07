@@ -4,13 +4,35 @@ h1{
 #container{
     margin: auto;
     border-style: solid;
-    width: 300px;
-    height: 500px;
+    width: 400px;
+    height: 600px;
 }
 #content{
     display: grid;
-    grid-template-columns: repeat(4, 60px);
-    grid-template-rows: repeat(5, 60px);
-    padding: 40px;
+    grid-template-columns: repeat(4, 90px);
+    grid-template-rows: repeat(5, 112px);
+    padding: 20px;
+}
+
+#screen{
+    grid-column: 1 / 5;
+    border-style: solid;
+    margin: 5px;
+    text-align: right;
+    font-family: "Times New Roman", Times, serif;
+    font-style: bold;
+    font-size: 80px;
+}
+
+.digits{
+    font-family: "Times New Roman", Times, serif;
+    font-style: bold;
+    font-size: 50px;
+}
+
+.operand{
+    font-family: "Times New Roman", Times, serif;
+    font-style: bold;
+    font-size: 50px;
 }
 
