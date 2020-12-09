@@ -2,7 +2,8 @@
 let x = undefined;
 let y = undefined;
 let op = "";
-let display = "";
+let isX = true;
+let isFinal = false;
 
 function add(a,b){
     return a+b;
@@ -17,7 +18,7 @@ function multiply(a,b){
 }
 
 function divide(a,b){
-    return a/b;
+    return (a/b).toFixed(5);
 }
 
 function operate(op, a, b){
@@ -49,27 +50,59 @@ function clearScreen(){
     x = undefined;
     y = undefined;
     op = "";
+    isX = true;
+    isFinal = false;
 }
 
 function screenDisplay(content){
-    if(x != undefined && y != undefined && op != ""){
+    if(isFinal){
         return;
     }
 
     let equation = document.querySelector("#equation");
 
     if(content === "+" || content === "-" || content === "*" || content === "/"){
-            x = parseInt(equation.textContent);
-            op = content;
-            equation.textContent += " " + content + " ";
+            if(x != undefined && y != undefined){
+                // isX = !(isX);
+                x = operate(op, x, y);
+                y = undefined;
+                op = content;
+                equation.textContent += " " + content + " ";
+            }else{
+                isX = !(isX);
+                op = content;
+                equation.textContent += " " + content + " ";
+            }
+            
     }else{
-        y = parseInt(content);
-        equation.textContent += content;
+        if(isX){
+            if(x == undefined){
+                x = parseInt(content);
+                equation.textContent += content;
+            }else{
+                let temp = x.toString();
+                temp += content;
+                x = parseInt(temp);
+                equation.textContent += content;
+            }
+            
+        }else{
+            if(y == undefined){
+                y = parseInt(content);
+                equation.textContent += content;
+            }else{
+                let temp = y.toString();
+                temp += content;
+                y = parseInt(temp);
+                equation.textContent += content;
+            }
+        }  
     }
     
 }
 
 function calculate(){
+    isFinal = true;
     return operate(op, x, y);
 }
 
